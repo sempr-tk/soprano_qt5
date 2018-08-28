@@ -6,7 +6,7 @@ includedir=@INCLUDE_INSTALL_DIR@
 Name: Soprano
 Description: Powerful RDF storage, parsing, and serialization framework
 URL=http://soprano.sourceforge.net/
-Requires: QtCore
+Requires: @QT_DEPS@
 Version: @SOPRANO_VERSION_STRING@
 Libs: -L${libdir} -lsoprano
 Cflags: -I${includedir} -I${includedir}/soprano

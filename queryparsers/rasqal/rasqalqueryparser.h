@@ -33,6 +33,9 @@ namespace Soprano {
         class QueryParser : public QObject, public Soprano::Query::Parser
     {
         Q_OBJECT
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+        Q_PLUGIN_METADATA(IID "org.soprano.plugins.QueryParser/1.0")
+#endif
         Q_INTERFACES(Soprano::Query::Parser)
 
         public:
@@ -45,10 +48,10 @@ namespace Soprano {
 
         private:
             static void raptor_message_handler( void *query_parser, raptor_locator *rl, const char *msg );
-            
+
             void emitSyntaxError( const Soprano::Error::Locator& locator, const QString& message );
         };
-        
+
     }
 }
 

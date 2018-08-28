@@ -34,7 +34,7 @@ set(SOPRANO_NON_GENERIC_SOVERSION "4")
 
 ##################  User options  ################################
 
-option(QT5_BUILD "Build Soprano using the Qt5 framework" FALSE)
+option(QT5_BUILD "Build Soprano using the Qt5 framework" TRUE)
 option(SOPRANO_BUILD_TESTS "Build all unit tests")
 option(SOPRANO_DISABLE_REDLAND_BACKEND "Disable compilation of Redland storage backend")
 option(SOPRANO_DISABLE_SESAME2_BACKEND "Disable compilation of Sesame2 storage backend")
@@ -71,6 +71,7 @@ endif()
 ##################  find packages  ################################
 
 if(QT5_BUILD)
+  set(QT_DEPS Qt5Core)
   find_package(Qt5 COMPONENTS Core DBus Network Xml REQUIRED CONFIG)
   if(Qt5_POSITION_INDEPENDENT_CODE)
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -83,6 +84,7 @@ if(QT5_BUILD)
   set(SOPRANO_GENERIC_SOVERSION "${_SOPRANO_GENERIC_SOVERSION}")
   set(SOPRANO_NON_GENERIC_SOVERSION "${_SOPRANO_NON_GENERIC_SOVERSION}")
 else()
+  set(QT_DEPS QtCore)
   set(QT_USE_IMPORTED_TARGETS TRUE)
   find_package(Qt4 4.5.0)
   set_package_properties(Qt4 PROPERTIES

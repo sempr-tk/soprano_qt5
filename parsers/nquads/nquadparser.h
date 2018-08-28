@@ -1,4 +1,4 @@
-/* 
+/*
  * This file is part of Soprano Project
  *
  * Copyright (C) 2007 Sebastian Trueg <trueg@kde.org>
@@ -34,16 +34,19 @@ namespace Soprano {
     class NQuadParser : public QObject, public Soprano::Parser
     {
     Q_OBJECT
-        Q_INTERFACES(Soprano::Parser)
-        
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    Q_PLUGIN_METADATA(IID "org.soprano.plugins.Parser/1.0")
+#endif
+    Q_INTERFACES(Soprano::Parser)
+
     public:
     NQuadParser();
     ~NQuadParser();
 
     RdfSerializations supportedSerializations() const;
 
-    StatementIterator parseStream( QTextStream&, 
-                       const QUrl& baseUri, 
+    StatementIterator parseStream( QTextStream&,
+                       const QUrl& baseUri,
                        RdfSerialization serialization,
                        const QString& userSerialization = QString() ) const;
 

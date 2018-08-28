@@ -1,4 +1,4 @@
-/* 
+/*
  * This file is part of Soprano Project.
  *
  * Copyright (C) 2007 Sebastian Trueg <trueg@kde.org>
@@ -44,6 +44,9 @@ namespace Soprano
         class SOPRANO_EXPORT ServerBackend : public QObject, public Soprano::Backend
         {
             Q_OBJECT
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+            Q_PLUGIN_METADATA(IID "org.soprano.plugins.Backend/2.1")
+#endif
             Q_INTERFACES(Soprano::Backend)
 
         public:

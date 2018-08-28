@@ -1,4 +1,4 @@
-/* 
+/*
  * This file is part of Soprano Project
  *
  * Copyright (C) 2006 Duncan Mac-Vicar <duncan@kde.org>
@@ -33,8 +33,11 @@
 
 namespace Soprano {
     namespace Raptor {
-      class Parser : public QObject, public Soprano::Parser { 
+      class Parser : public QObject, public Soprano::Parser {
         Q_OBJECT
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+        Q_PLUGIN_METADATA(IID "org.soprano.plugins.Parser/1.0")
+#endif
         Q_INTERFACES(Soprano::Parser)
 
     public:
@@ -43,16 +46,16 @@ namespace Soprano {
 
 	RdfSerializations supportedSerializations() const;
 
-        StatementIterator parseFile( const QString& filename, 
-                     const QUrl& baseUri, 
+        StatementIterator parseFile( const QString& filename,
+                     const QUrl& baseUri,
                      RdfSerialization serialization,
                      const QString& userSerialization = QString() ) const;
-        StatementIterator parseString( const QString& data, 
-                       const QUrl& baseUri, 
+        StatementIterator parseString( const QString& data,
+                       const QUrl& baseUri,
                        RdfSerialization serialization,
                        const QString& userSerialization = QString() ) const;
-        StatementIterator parseStream( QTextStream&, 
-                       const QUrl& baseUri, 
+        StatementIterator parseStream( QTextStream&,
+                       const QUrl& baseUri,
                        RdfSerialization serialization,
                        const QString& userSerialization = QString() ) const;
 

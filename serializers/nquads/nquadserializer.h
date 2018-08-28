@@ -1,4 +1,4 @@
-/* 
+/*
  * This file is part of Soprano Project
  *
  * Copyright (C) 2007 Sebastian Trueg <trueg@kde.org>
@@ -34,6 +34,9 @@ namespace Soprano {
     class NQuadSerializer : public QObject, public Soprano::Serializer
     {
     Q_OBJECT
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    Q_PLUGIN_METADATA(IID "org.soprano.plugins.Serializer/1.0")
+#endif
     Q_INTERFACES(Soprano::Serializer)
 
     public:
@@ -42,8 +45,8 @@ namespace Soprano {
 
     RdfSerializations supportedSerializations() const;
 
-    bool serialize( StatementIterator it, 
-            QTextStream& stream, 
+    bool serialize( StatementIterator it,
+            QTextStream& stream,
             RdfSerialization serialization,
             const QString& userSerialization = QString() ) const;
 

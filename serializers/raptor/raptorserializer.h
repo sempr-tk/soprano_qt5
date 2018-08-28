@@ -1,4 +1,4 @@
-/* 
+/*
  * This file is part of Soprano Project
  *
  * Copyright (C) 2006 Duncan Mac-Vicar <duncan@kde.org>
@@ -33,6 +33,9 @@ namespace Soprano {
         class Serializer : public QObject, public Soprano::Serializer
         {
             Q_OBJECT
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+	    Q_PLUGIN_METADATA(IID "org.soprano.plugins.Serializer/1.0")
+#endif
             Q_INTERFACES(Soprano::Serializer)
 
         public:
@@ -42,12 +45,12 @@ namespace Soprano {
             RdfSerializations supportedSerializations() const;
             QStringList supportedUserSerializations() const;
 
-            bool serialize( StatementIterator it, 
-                            QTextStream& stream, 
+            bool serialize( StatementIterator it,
+                            QTextStream& stream,
                             RdfSerialization serialization,
                             const QString& userSerialization = QString() ) const;
 	private:
-	    /* See source file comments, that explain why it is necessary to 
+	    /* See source file comments, that explain why it is necessary to
 	     * use Private class and RaptorInitHelper is not succifient anymore
 	     */
 	   class Private;
