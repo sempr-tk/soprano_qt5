@@ -4,6 +4,9 @@ cmake_minimum_required(VERSION 2.8.9 FATAL_ERROR)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # Used to report the packages we found
 include(FeatureSummary)
 
