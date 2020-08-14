@@ -3,6 +3,23 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Soprano RDF Framework")
 set(CPACK_PACKAGE_VERSION_MAJOR ${SOPRANO_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${SOPRANO_VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${SOPRANO_VERSION_RELEASE})
+
+##################  Create a debian-package ##################
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "RDF storage, parsing and serialization framework based on Qt.")
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Christoph Tieben <christoph.tieben@dfki.de>")
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+set(CPACK_DEBIAN_PACKAGE_GENERATE_SHLIBS ON)
+
+if (QT5_BUILD)
+    set(CPACK_DEBIAN_PACKAGE_NAME "libsoprano4-qt5-dev")
+    set(CPACK_DEBIAN_PACKAGE_CONFLICTS "libsoprano4")
+else()
+    set(CPACK_DEBIAN_PACKAGE_NAME "libsoprano4")
+    set(CPACK_DEBIAN_PACKAGE_CONFLICTS "libsoprano4-qt5-dev")
+endif()
+
+
 if (APPLE)
    set(CPACK_SET_DESTDIR ON)
    set(CPACK_PACKAGE_RELOCATABLE OFF)
